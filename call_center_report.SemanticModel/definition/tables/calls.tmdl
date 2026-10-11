@@ -1,0 +1,142 @@
+table calls
+	lineageTag: f8126238-a7f2-46d3-8241-99daf38acd8e
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 4de170db-8780-4b36-ae1d-2a36a61086ce
+		summarizeBy: sum
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column call_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 99abbd33-5222-4a1d-b374-c559eb069ea7
+		summarizeBy: none
+		sourceColumn: call_timestamp
+
+		variation Variation
+			isDefault
+			relationship: 6d26be7d-7a0e-4a11-a534-c1b27f2c67aa
+			defaultHierarchy: LocalDateTable_c6fe99de-cabd-48c8-9e52-51019424a47d.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column caller_phone
+		dataType: int64
+		formatString: 0
+		lineageTag: cf2223bb-a435-47f4-a81a-2b2404cf2a30
+		summarizeBy: sum
+		sourceColumn: caller_phone
+
+		annotation SummarizationSetBy = Automatic
+
+	column ivr_path
+		dataType: int64
+		formatString: 0
+		lineageTag: b51a52c6-8802-4aa7-bc31-edced4cd22ac
+		summarizeBy: none
+		sourceColumn: ivr_path
+
+		annotation SummarizationSetBy = Automatic
+
+	column ivr_label
+		dataType: string
+		lineageTag: be12dbba-dd5b-4a29-a76b-271b2b36eee1
+		summarizeBy: none
+		sourceColumn: ivr_label
+
+		annotation SummarizationSetBy = Automatic
+
+	column agent_id
+		dataType: int64
+		formatString: 0
+		lineageTag: fea03eda-3ac9-4aef-b918-8242823fbf19
+		summarizeBy: none
+		sourceColumn: agent_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column skill_group
+		dataType: string
+		lineageTag: 05e95b7c-265a-45c7-a382-1b64edc812ec
+		summarizeBy: none
+		sourceColumn: skill_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column hold_time_seconds
+		dataType: int64
+		formatString: 0
+		lineageTag: a89d8719-1459-4e71-a0aa-dc5d9b67a254
+		summarizeBy: sum
+		sourceColumn: hold_time_seconds
+
+		annotation SummarizationSetBy = Automatic
+
+	column handle_time_minutes
+		dataType: double
+		lineageTag: 74f309c3-7d64-4f0b-861e-e981cb25cd3f
+		summarizeBy: sum
+		sourceColumn: handle_time_minutes
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column call_reason
+		dataType: string
+		lineageTag: 01e71368-236e-4a95-a0c2-1ec1634ac55a
+		summarizeBy: none
+		sourceColumn: call_reason
+
+		annotation SummarizationSetBy = Automatic
+
+	column outcome
+		dataType: string
+		lineageTag: 95be1ec8-2e2d-4711-9b84-6069a1a55d29
+		summarizeBy: none
+		sourceColumn: outcome
+
+		annotation SummarizationSetBy = Automatic
+
+	column disposition
+		dataType: string
+		lineageTag: fe0bf50e-f543-420d-9ab4-d658253aab1a
+		summarizeBy: none
+		sourceColumn: disposition
+
+		annotation SummarizationSetBy = Automatic
+
+	column csat_score
+		dataType: int64
+		formatString: 0
+		lineageTag: d5e6bc91-4f90-4ad6-82ac-19ca3233a249
+		summarizeBy: sum
+		sourceColumn: csat_score
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_first_call_resolution
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: bf9163c4-d000-4a84-a805-e1f955632584
+		summarizeBy: none
+		sourceColumn: is_first_call_resolution
+
+		annotation SummarizationSetBy = Automatic
+
+	partition calls = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\scott\Downloads\calls.csv"),[Delimiter=",", Columns=14, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"id", Int64.Type}, {"call_timestamp", type datetime}, {"caller_phone", Int64.Type}, {"ivr_path", Int64.Type}, {"ivr_label", type text}, {"agent_id", Int64.Type}, {"skill_group", type text}, {"hold_time_seconds", Int64.Type}, {"handle_time_minutes", type number}, {"call_reason", type text}, {"outcome", type text}, {"disposition", type text}, {"csat_score", Int64.Type}, {"is_first_call_resolution", type logical}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

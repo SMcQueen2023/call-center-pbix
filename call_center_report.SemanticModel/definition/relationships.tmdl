@@ -1,0 +1,13 @@
+relationship 6d26be7d-7a0e-4a11-a534-c1b27f2c67aa
+	joinOnDateBehavior: datePartOnly
+	fromColumn: calls.call_timestamp
+	toColumn: LocalDateTable_c6fe99de-cabd-48c8-9e52-51019424a47d.Date
+
+relationship bd118ed3-11ee-5845-ffb6-77c4bb79fc51
+	fromColumn: calls.ivr_path
+	toColumn: ivr_menu.path
+
+relationship 4ac7eef7-ef9d-63eb-87e2-492b9672168b
+	fromColumn: calls.agent_id
+	toColumn: agents.id
+

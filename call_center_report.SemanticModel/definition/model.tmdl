@@ -1,0 +1,23 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["ivr_menu","calls","agents"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table ivr_menu
+ref table calls
+ref table DateTableTemplate_738b27cc-7213-4306-be22-7a60008c47ad
+ref table LocalDateTable_c6fe99de-cabd-48c8-9e52-51019424a47d
+ref table agents
+
+ref cultureInfo en-US
+

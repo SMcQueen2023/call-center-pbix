@@ -1,0 +1,59 @@
+table agents
+	lineageTag: 987e9bdd-bb64-431b-a5e7-60988b9d0b2b
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: dd8ab311-bdd7-482b-8772-5c9a7c0e5b9d
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: f563e3f3-109f-4a46-b562-c6d82e2dda06
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column skill_group
+		dataType: string
+		lineageTag: 15302f46-d115-4d2d-a85b-55d7ac3dd821
+		summarizeBy: none
+		sourceColumn: skill_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column experience_years
+		dataType: int64
+		formatString: 0
+		lineageTag: 46eb2321-9234-41c1-877b-3fa9d18cfc5e
+		summarizeBy: none
+		sourceColumn: experience_years
+
+		annotation SummarizationSetBy = Automatic
+
+	column avg_handle_time_min
+		dataType: double
+		lineageTag: 75d2fdec-46df-4089-b1dd-14e3024da5fe
+		summarizeBy: none
+		sourceColumn: avg_handle_time_min
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition agents = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\scott\Downloads\agents.csv"),[Delimiter=",", Columns=5, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"id", Int64.Type}, {"name", type text}, {"skill_group", type text}, {"experience_years", Int64.Type}, {"avg_handle_time_min", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

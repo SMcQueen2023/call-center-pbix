@@ -1,0 +1,40 @@
+table ivr_menu
+	lineageTag: 6a7f2909-d344-40df-9d99-36bb906fe6b6
+
+	column path
+		dataType: int64
+		formatString: 0
+		lineageTag: fc161bdd-fcb3-4c4a-be6d-36ea0c02788d
+		summarizeBy: none
+		sourceColumn: path
+
+		annotation SummarizationSetBy = Automatic
+
+	column label
+		dataType: string
+		lineageTag: 22238428-90f7-4a77-9b06-c16838a71217
+		summarizeBy: none
+		sourceColumn: label
+
+		annotation SummarizationSetBy = Automatic
+
+	column route_to
+		dataType: string
+		lineageTag: 16e4e907-6e66-450d-be1b-308fd5a32484
+		summarizeBy: none
+		sourceColumn: route_to
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ivr_menu = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\scott\Downloads\ivr_menu.csv"),[Delimiter=",", Columns=3, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"path", Int64.Type}, {"label", type text}, {"route_to", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
