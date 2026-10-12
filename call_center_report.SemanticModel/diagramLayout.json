@@ -10,46 +10,123 @@
       "nodes": [
         {
           "location": {
-            "x": 0,
-            "y": 74
+            "x": 17.715609999999998,
+            "y": 166.52673400000003
           },
-          "nodeIndex": "ivr_menu",
-          "nodeLineageTag": "6a7f2909-d344-40df-9d99-36bb906fe6b6",
-          "size": {
-            "height": 152,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {
-            "x": 452,
-            "y": 17
-          },
-          "nodeIndex": "calls",
-          "nodeLineageTag": "f8126238-a7f2-46d3-8241-99daf38acd8e",
+          "nodeIndex": "agent_segments",
+          "nodeLineageTag": "003f8230-01f5-4b95-8dcf-9f12e330026e",
           "size": {
             "height": 300,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 1
         },
         {
           "location": {
-            "x": 851,
-            "y": 113
+            "x": 0,
+            "y": 964.34148899317313
+          },
+          "nodeIndex": "agent_state_events",
+          "nodeLineageTag": "f28d680d-67db-4aba-840d-a2c1d82dfd8b",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 575.8234095224102
           },
           "nodeIndex": "agents",
-          "nodeLineageTag": "987e9bdd-bb64-431b-a5e7-60988b9d0b2b",
+          "nodeLineageTag": "696c22a0-1015-4cb1-8adb-25c1dbb8cc24",
           "size": {
-            "height": 200,
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 862.629366,
+            "y": 0
+          },
+          "nodeIndex": "calls",
+          "nodeLineageTag": "24b90d46-1a8d-4772-89ef-752ede1ed949",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 873.4835011205106,
+            "y": 976.05422395517951
+          },
+          "nodeIndex": "DATA_DICTIONARY",
+          "nodeLineageTag": "bd495a80-34c5-43d1-8dd5-b6c99f195904",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 418.53908768595966,
+            "y": 0
+          },
+          "nodeIndex": "hold_segments",
+          "nodeLineageTag": "e0fbb2ba-a4ba-40d6-ad9c-70924560840a",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 1319.1862302258833,
+            "y": 9.3586763550013075
+          },
+          "nodeIndex": "ivr_events",
+          "nodeLineageTag": "1dd31004-981e-4e13-9f3f-a0354de5a08d",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 8
+        },
+        {
+          "location": {
+            "x": 459.9529852914817,
+            "y": 489.65941094835284
+          },
+          "nodeIndex": "queue_segments",
+          "nodeLineageTag": "52591360-629d-4bff-94f4-5c5332cb01ac",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 1603.1862302258833,
+            "y": 554.17074449658662
+          },
+          "nodeIndex": "metrics",
+          "size": {
+            "height": 104,
             "width": 234
           },
           "zIndex": 0
         }
       ],
       "name": "All tables",
-      "zoomValue": 100,
+      "zoomValue": 56.447393005377741,
       "pinKeyFieldsToTop": false,
       "showExtraHeaderInfo": false,
       "hideKeyFieldsWhenCollapsed": false,

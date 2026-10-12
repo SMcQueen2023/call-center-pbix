@@ -1,0 +1,93 @@
+table hold_segments
+	lineageTag: e0fbb2ba-a4ba-40d6-ad9c-70924560840a
+
+	column hold_segment_id
+		dataType: string
+		lineageTag: c06f34db-c07a-4b1f-b15d-19a756abafa4
+		summarizeBy: none
+		sourceColumn: hold_segment_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column agent_segment_id
+		dataType: string
+		lineageTag: 6664efda-f2d2-4bce-adb0-73b0a25f8ed5
+		summarizeBy: none
+		sourceColumn: agent_segment_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column call_id
+		dataType: string
+		lineageTag: e93c60b3-b0c5-4338-a088-c7526ef45066
+		summarizeBy: none
+		sourceColumn: call_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column hold_sequence
+		dataType: int64
+		formatString: 0
+		lineageTag: 9dbd58b0-cc6c-465c-8f7c-3fcf53571474
+		summarizeBy: sum
+		sourceColumn: hold_sequence
+
+		annotation SummarizationSetBy = Automatic
+
+	column hold_start_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 5a0d5675-544b-44f8-bc87-8759fd3f1c51
+		summarizeBy: none
+		sourceColumn: hold_start_timestamp
+
+		variation Variation
+			isDefault
+			relationship: 80d74c70-9348-401a-8185-3786c6b29da7
+			defaultHierarchy: LocalDateTable_5d70d524-e7ca-47cb-8d04-a989645cbad2.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column hold_end_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4a288642-24a4-4760-8230-63b32450c8ee
+		summarizeBy: none
+		sourceColumn: hold_end_timestamp
+
+		variation Variation
+			isDefault
+			relationship: fd589e73-c4da-4a6a-94d1-035748ae916b
+			defaultHierarchy: LocalDateTable_2eccc4c1-3813-4dfe-b9ee-3dbc49e73c8c.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column hold_duration_seconds
+		dataType: int64
+		formatString: 0
+		lineageTag: 099202ed-5c30-4416-a81a-455d2ef1bf2f
+		summarizeBy: sum
+		sourceColumn: hold_duration_seconds
+
+		annotation SummarizationSetBy = Automatic
+
+	column hold_reason
+		dataType: string
+		lineageTag: 3ed26e84-e877-48db-9d83-d8507252b7b7
+		summarizeBy: none
+		sourceColumn: hold_reason
+
+		annotation SummarizationSetBy = Automatic
+
+	partition hold_segments = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\scott\Downloads\call_center_advanced_csv\hold_segments.csv"),[Delimiter=",", Columns=8, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"hold_segment_id", type text}, {"agent_segment_id", type text}, {"call_id", type text}, {"hold_sequence", Int64.Type}, {"hold_start_timestamp", type datetime}, {"hold_end_timestamp", type datetime}, {"hold_duration_seconds", Int64.Type}, {"hold_reason", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

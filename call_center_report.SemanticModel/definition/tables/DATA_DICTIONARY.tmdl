@@ -1,0 +1,50 @@
+table DATA_DICTIONARY
+	lineageTag: bd495a80-34c5-43d1-8dd5-b6c99f195904
+
+	column table
+		dataType: string
+		lineageTag: be68a932-72ea-44b6-aa7e-f2c63abc87fd
+		summarizeBy: none
+		sourceColumn: table
+
+		annotation SummarizationSetBy = Automatic
+
+	column column
+		dataType: string
+		lineageTag: b6ccf914-78bb-4142-9422-be26b1ddb548
+		summarizeBy: none
+		sourceColumn: column
+
+		annotation SummarizationSetBy = Automatic
+
+	column suggested_type
+		dataType: string
+		lineageTag: 88c692a4-6785-43e5-aad7-abcd3c2ca349
+		summarizeBy: none
+		sourceColumn: suggested_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: ae087c3a-02cf-474d-a2ca-00b25d040680
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DATA_DICTIONARY = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\scott\Downloads\call_center_advanced_csv\DATA_DICTIONARY.csv"),[Delimiter=",", Columns=4, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}}),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"table", type text}, {"column", type text}, {"suggested_type", type text}, {"description", type text}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

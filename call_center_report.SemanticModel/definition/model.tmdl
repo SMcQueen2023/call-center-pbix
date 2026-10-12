@@ -9,15 +9,48 @@ model Model
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBI_QueryOrder = ["ivr_menu","calls","agents"]
+annotation PBI_QueryOrder = ["agent_segments","agent_state_events","agents","calls","DATA_DICTIONARY","hold_segments","ivr_events","queue_segments","metrics"]
 
 annotation PBI_ProTooling = ["DevMode"]
 
-ref table ivr_menu
-ref table calls
-ref table DateTableTemplate_738b27cc-7213-4306-be22-7a60008c47ad
-ref table LocalDateTable_c6fe99de-cabd-48c8-9e52-51019424a47d
+ref table agent_segments
+ref table DateTableTemplate_e0e48f99-18f9-489b-8c79-bf443b67d76e
+ref table LocalDateTable_1406eaec-d759-4c7f-88f0-ae37720b6fc5
+ref table LocalDateTable_ace3b837-1193-4266-b75e-c25f6b751e32
+ref table LocalDateTable_c9e0f8dc-05a0-4ca2-be74-a6218be5bef0
+ref table LocalDateTable_e13edd77-6985-4a1a-943a-ab71e8dba217
+ref table LocalDateTable_723b6608-0ae9-4cfb-91be-8ceb8f58a2d9
+ref table LocalDateTable_a5506aba-9178-479f-933b-75a80250670e
+ref table agent_state_events
+ref table LocalDateTable_595ae2e4-f852-4a31-9e1b-03ca4133ae86
+ref table LocalDateTable_9f40828b-6177-4ca0-a1f6-b4e51a201209
 ref table agents
+ref table LocalDateTable_5f21cc87-f08d-454e-9b11-995b551fbb70
+ref table calls
+ref table LocalDateTable_2ed13693-7a2e-45f9-812f-32c80c1de7ba
+ref table LocalDateTable_73545e98-7fd2-4a2a-9db9-6f5e27ad3358
+ref table LocalDateTable_096af662-6d37-4d2e-b150-98ec847afdeb
+ref table LocalDateTable_dd90d16f-0cc1-4c51-890c-9039dc85cd82
+ref table LocalDateTable_d057f59b-29ad-4568-a9d5-c944610a90ce
+ref table LocalDateTable_03829ead-a5ac-4457-97d8-3e64e4648290
+ref table LocalDateTable_fe15c50a-f49a-4706-bd0e-6aee7119446c
+ref table LocalDateTable_f35bc8ac-1121-4b9f-83ca-e41f835bc3b4
+ref table LocalDateTable_256f2470-ebb5-4b4d-bb1d-a0f83fb17444
+ref table LocalDateTable_edc94032-37e2-43db-a862-a27b07a711ba
+ref table LocalDateTable_64d40482-bb8b-4de6-91fc-47de048be4b7
+ref table LocalDateTable_92256321-757d-4104-b817-f9c4743be320
+ref table LocalDateTable_85e532ff-e82e-484d-8b0f-e88423c73ff3
+ref table DATA_DICTIONARY
+ref table hold_segments
+ref table LocalDateTable_5d70d524-e7ca-47cb-8d04-a989645cbad2
+ref table LocalDateTable_2eccc4c1-3813-4dfe-b9ee-3dbc49e73c8c
+ref table ivr_events
+ref table LocalDateTable_63c5f2f7-fa49-438a-834a-62d7738680d5
+ref table LocalDateTable_981b90ea-65a5-4452-b320-1616dc79e942
+ref table queue_segments
+ref table LocalDateTable_5cd237f6-3d5c-47b6-814b-08aead6494cc
+ref table LocalDateTable_bdf0bb2d-e625-4432-97cb-441f91024b7f
+ref table metrics
 
 ref cultureInfo en-US
 

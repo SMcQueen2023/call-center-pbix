@@ -1,0 +1,84 @@
+table agent_state_events
+	lineageTag: f28d680d-67db-4aba-840d-a2c1d82dfd8b
+
+	column state_event_id
+		dataType: string
+		lineageTag: 2c8db02e-666c-4f12-91c0-20abc6447025
+		summarizeBy: none
+		sourceColumn: state_event_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column agent_id
+		dataType: string
+		lineageTag: ddb6516c-f51a-4202-8885-100c30d5215a
+		summarizeBy: none
+		sourceColumn: agent_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column event_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d8e97ef4-7ab8-492a-ab7c-695aed7f012e
+		summarizeBy: none
+		sourceColumn: event_timestamp
+
+		variation Variation
+			isDefault
+			relationship: 90774646-2a0f-4927-b4d9-dbb4cbaadc27
+			defaultHierarchy: LocalDateTable_595ae2e4-f852-4a31-9e1b-03ca4133ae86.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column state
+		dataType: string
+		lineageTag: 91cc774b-dbc9-44d3-ab33-996fc3907af0
+		summarizeBy: none
+		sourceColumn: state
+
+		annotation SummarizationSetBy = Automatic
+
+	column state_end_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 7673b730-aa6c-4b62-a5ed-0d78023a4c23
+		summarizeBy: none
+		sourceColumn: state_end_timestamp
+
+		variation Variation
+			isDefault
+			relationship: 50f47f3d-a780-48c4-8d15-d7a59701e518
+			defaultHierarchy: LocalDateTable_9f40828b-6177-4ca0-a1f6-b4e51a201209.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column duration_seconds
+		dataType: int64
+		formatString: 0
+		lineageTag: 0d12e334-5574-4d48-a019-ae96a2315f06
+		summarizeBy: sum
+		sourceColumn: duration_seconds
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_agent_segment_id
+		dataType: string
+		lineageTag: 3ae2d92d-3c19-44c7-a2c6-6eb8cb0bbf28
+		summarizeBy: none
+		sourceColumn: source_agent_segment_id
+
+		annotation SummarizationSetBy = Automatic
+
+	partition agent_state_events = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\scott\Downloads\call_center_advanced_csv\agent_state_events.csv"),[Delimiter=",", Columns=7, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"state_event_id", type text}, {"agent_id", type text}, {"event_timestamp", type datetime}, {"state", type text}, {"state_end_timestamp", type datetime}, {"duration_seconds", Int64.Type}, {"source_agent_segment_id", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

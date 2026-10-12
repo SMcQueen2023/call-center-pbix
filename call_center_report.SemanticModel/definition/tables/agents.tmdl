@@ -1,57 +1,85 @@
 table agents
-	lineageTag: 987e9bdd-bb64-431b-a5e7-60988b9d0b2b
+	lineageTag: 696c22a0-1015-4cb1-8adb-25c1dbb8cc24
 
-	column id
-		dataType: int64
-		formatString: 0
-		lineageTag: dd8ab311-bdd7-482b-8772-5c9a7c0e5b9d
-		summarizeBy: none
-		sourceColumn: id
-
-		annotation SummarizationSetBy = Automatic
-
-	column name
+	column agent_id
 		dataType: string
-		lineageTag: f563e3f3-109f-4a46-b562-c6d82e2dda06
+		lineageTag: 4e12a6f1-87d5-4d59-9683-eec1a5dd9d83
 		summarizeBy: none
-		sourceColumn: name
+		sourceColumn: agent_id
 
 		annotation SummarizationSetBy = Automatic
 
-	column skill_group
+	column team_id
 		dataType: string
-		lineageTag: 15302f46-d115-4d2d-a85b-55d7ac3dd821
+		lineageTag: cdcf06d5-3cdd-4fe1-84e5-099c23f06b9a
 		summarizeBy: none
-		sourceColumn: skill_group
+		sourceColumn: team_id
 
 		annotation SummarizationSetBy = Automatic
 
-	column experience_years
-		dataType: int64
-		formatString: 0
-		lineageTag: 46eb2321-9234-41c1-877b-3fa9d18cfc5e
+	column team_name
+		dataType: string
+		lineageTag: de5ab268-e306-44cc-a6a5-819934b09fc4
 		summarizeBy: none
-		sourceColumn: experience_years
+		sourceColumn: team_name
 
 		annotation SummarizationSetBy = Automatic
 
-	column avg_handle_time_min
-		dataType: double
-		lineageTag: 75d2fdec-46df-4089-b1dd-14e3024da5fe
+	column site_id
+		dataType: string
+		lineageTag: 5cac58a5-9126-4b25-87c9-3325e8c4e752
 		summarizeBy: none
-		sourceColumn: avg_handle_time_min
+		sourceColumn: site_id
 
 		annotation SummarizationSetBy = Automatic
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
+	column seniority_band
+		dataType: string
+		lineageTag: 5c4fd74b-a110-4927-ac16-a75a3921b28c
+		summarizeBy: none
+		sourceColumn: seniority_band
+
+		annotation SummarizationSetBy = Automatic
+
+	column primary_skill
+		dataType: string
+		lineageTag: 2ee9c098-f12a-4c41-bd5a-2f5a910caea6
+		summarizeBy: none
+		sourceColumn: primary_skill
+
+		annotation SummarizationSetBy = Automatic
+
+	column language
+		dataType: string
+		lineageTag: 6270b2df-9faf-4b98-b3c7-11bbfdc41b55
+		summarizeBy: none
+		sourceColumn: language
+
+		annotation SummarizationSetBy = Automatic
+
+	column hire_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 66a70122-8fde-4c48-9a9e-fa9606adcd21
+		summarizeBy: none
+		sourceColumn: hire_date
+
+		variation Variation
+			isDefault
+			relationship: cfde2706-fab9-4eab-9f79-2f71fac1f182
+			defaultHierarchy: LocalDateTable_5f21cc87-f08d-454e-9b11-995b551fbb70.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
 
 	partition agents = m
 		mode: import
 		source =
 				let
-				    Source = Csv.Document(File.Contents("C:\Users\scott\Downloads\agents.csv"),[Delimiter=",", Columns=5, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    Source = Csv.Document(File.Contents("C:\Users\scott\Downloads\call_center_advanced_csv\agents.csv"),[Delimiter=",", Columns=8, Encoding=1252, QuoteStyle=QuoteStyle.None]),
 				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
-				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"id", Int64.Type}, {"name", type text}, {"skill_group", type text}, {"experience_years", Int64.Type}, {"avg_handle_time_min", type number}})
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"agent_id", type text}, {"team_id", type text}, {"team_name", type text}, {"site_id", type text}, {"seniority_band", type text}, {"primary_skill", type text}, {"language", type text}, {"hire_date", type date}})
 				in
 				    #"Changed Type"
 

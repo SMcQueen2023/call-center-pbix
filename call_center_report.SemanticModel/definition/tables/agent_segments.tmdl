@@ -1,0 +1,235 @@
+table agent_segments
+	lineageTag: 003f8230-01f5-4b95-8dcf-9f12e330026e
+
+	column agent_segment_id
+		dataType: string
+		lineageTag: c521dc48-0d79-46e9-935c-eab18b89f0bb
+		summarizeBy: none
+		sourceColumn: agent_segment_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column call_id
+		dataType: string
+		lineageTag: 8548f147-f608-45e8-ad3d-66267670ebe3
+		summarizeBy: none
+		sourceColumn: call_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column segment_number
+		dataType: int64
+		formatString: 0
+		lineageTag: 5274ad3b-fc66-4343-9f9c-2e8ef008459c
+		summarizeBy: sum
+		sourceColumn: segment_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column agent_id
+		dataType: string
+		lineageTag: 03a7bb66-8588-4e90-9412-59aa0f8b91ff
+		summarizeBy: none
+		sourceColumn: agent_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column team_id
+		dataType: string
+		lineageTag: 2e8d01ca-2f3d-490d-8269-3ec1e670e6df
+		summarizeBy: none
+		sourceColumn: team_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column queue_segment_id
+		dataType: string
+		lineageTag: 89bae5a7-929f-479c-a8f4-dd8b67c87b34
+		summarizeBy: none
+		sourceColumn: queue_segment_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column ring_start_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 018a515a-7dcd-43cc-acc4-9df6d4b335cf
+		summarizeBy: none
+		sourceColumn: ring_start_timestamp
+
+		variation Variation
+			isDefault
+			relationship: 702ef9ca-a78b-4a4e-bcb6-2a56b6137665
+			defaultHierarchy: LocalDateTable_1406eaec-d759-4c7f-88f0-ae37720b6fc5.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column ring_end_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9b67a98d-5d89-40ba-9564-b74b943feaea
+		summarizeBy: none
+		sourceColumn: ring_end_timestamp
+
+		variation Variation
+			isDefault
+			relationship: 5a9b4f9f-6700-4ae8-8495-66ae0c5c14cc
+			defaultHierarchy: LocalDateTable_ace3b837-1193-4266-b75e-c25f6b751e32.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column connect_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6c12094f-8554-4d6a-a4dd-eb6e96df4266
+		summarizeBy: none
+		sourceColumn: connect_timestamp
+
+		variation Variation
+			isDefault
+			relationship: c45b7e68-151a-40af-99e5-06cef8497cbd
+			defaultHierarchy: LocalDateTable_c9e0f8dc-05a0-4ca2-be74-a6218be5bef0.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column disconnect_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3bfb818a-9c8d-4fa6-9843-cf82f0412772
+		summarizeBy: none
+		sourceColumn: disconnect_timestamp
+
+		variation Variation
+			isDefault
+			relationship: 8cd739e0-66a4-414c-9cbc-ec5d647ad24b
+			defaultHierarchy: LocalDateTable_e13edd77-6985-4a1a-943a-ab71e8dba217.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column talk_duration_seconds
+		dataType: int64
+		formatString: 0
+		lineageTag: e51e9210-281c-464e-8edb-e96319a5dd1a
+		summarizeBy: sum
+		sourceColumn: talk_duration_seconds
+
+		annotation SummarizationSetBy = Automatic
+
+	column hold_duration_seconds
+		dataType: int64
+		formatString: 0
+		lineageTag: 1eb98d3e-3f39-4ebd-a0b7-af6edd1401b4
+		summarizeBy: sum
+		sourceColumn: hold_duration_seconds
+
+		annotation SummarizationSetBy = Automatic
+
+	column hold_count
+		dataType: int64
+		formatString: 0
+		lineageTag: b25dabd5-2332-41b8-a32c-ffe3cfb6126a
+		summarizeBy: sum
+		sourceColumn: hold_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column acw_start_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e691c40a-063e-4cdf-9413-e101576b8b69
+		summarizeBy: none
+		sourceColumn: acw_start_timestamp
+
+		variation Variation
+			isDefault
+			relationship: c80ab726-479a-4fa3-b458-d187ecd1cfcb
+			defaultHierarchy: LocalDateTable_723b6608-0ae9-4cfb-91be-8ceb8f58a2d9.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column acw_end_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f31dc5ac-86f9-4ff9-884d-d044b3d41dcd
+		summarizeBy: none
+		sourceColumn: acw_end_timestamp
+
+		variation Variation
+			isDefault
+			relationship: a4fcc58b-8ba7-4727-9f9c-697aff4b9fda
+			defaultHierarchy: LocalDateTable_a5506aba-9178-479f-933b-75a80250670e.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column acw_duration_seconds
+		dataType: int64
+		formatString: 0
+		lineageTag: 3d9e46c9-ea44-494e-bc1d-651dcd17f234
+		summarizeBy: sum
+		sourceColumn: acw_duration_seconds
+
+		annotation SummarizationSetBy = Automatic
+
+	column handle_duration_seconds
+		dataType: int64
+		formatString: 0
+		lineageTag: 04cf27be-afb1-414d-8867-fb46d1a8647c
+		summarizeBy: sum
+		sourceColumn: handle_duration_seconds
+
+		annotation SummarizationSetBy = Automatic
+
+	column segment_outcome
+		dataType: string
+		lineageTag: 4ab4e58b-9530-4fc7-921f-dca358ae6b80
+		summarizeBy: none
+		sourceColumn: segment_outcome
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_transfer
+		dataType: int64
+		formatString: 0
+		lineageTag: 11a6e3ef-538e-4076-a990-534c004adeb7
+		summarizeBy: sum
+		sourceColumn: is_transfer
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_type
+		dataType: string
+		lineageTag: a0384c7d-8357-4bde-b543-98adbf838bdc
+		summarizeBy: none
+		sourceColumn: transfer_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column consult_flag
+		dataType: int64
+		formatString: 0
+		lineageTag: 65a38a33-891a-4d75-922a-e47cee4fdbd2
+		summarizeBy: sum
+		sourceColumn: consult_flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column resolution_code
+		dataType: string
+		lineageTag: 2664ca8f-34a9-4917-8cef-f03558465f9a
+		summarizeBy: none
+		sourceColumn: resolution_code
+
+		annotation SummarizationSetBy = Automatic
+
+	partition agent_segments = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\scott\Downloads\call_center_advanced_csv\agent_segments.csv"),[Delimiter=",", Columns=22, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"agent_segment_id", type text}, {"call_id", type text}, {"segment_number", Int64.Type}, {"agent_id", type text}, {"team_id", type text}, {"queue_segment_id", type text}, {"ring_start_timestamp", type datetime}, {"ring_end_timestamp", type datetime}, {"connect_timestamp", type datetime}, {"disconnect_timestamp", type datetime}, {"talk_duration_seconds", Int64.Type}, {"hold_duration_seconds", Int64.Type}, {"hold_count", Int64.Type}, {"acw_start_timestamp", type datetime}, {"acw_end_timestamp", type datetime}, {"acw_duration_seconds", Int64.Type}, {"handle_duration_seconds", Int64.Type}, {"segment_outcome", type text}, {"is_transfer", Int64.Type}, {"transfer_type", type text}, {"consult_flag", Int64.Type}, {"resolution_code", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

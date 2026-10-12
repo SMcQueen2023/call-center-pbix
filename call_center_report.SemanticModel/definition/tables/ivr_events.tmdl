@@ -1,0 +1,117 @@
+table ivr_events
+	lineageTag: 1dd31004-981e-4e13-9f3f-a0354de5a08d
+
+	column ivr_event_id
+		dataType: string
+		lineageTag: 53671649-7e40-4cb9-a0cf-ec09283040b4
+		summarizeBy: none
+		sourceColumn: ivr_event_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column call_id
+		dataType: string
+		lineageTag: d4663013-bce2-465a-9be5-76531bddf39b
+		summarizeBy: none
+		sourceColumn: call_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column step_number
+		dataType: int64
+		formatString: 0
+		lineageTag: b9fb372b-1049-4674-822a-9500db7b7302
+		summarizeBy: sum
+		sourceColumn: step_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column ivr_label
+		dataType: string
+		lineageTag: 9429983c-24bb-4c55-8899-39d120fbedf6
+		summarizeBy: none
+		sourceColumn: ivr_label
+
+		annotation SummarizationSetBy = Automatic
+
+	column menu_path
+		dataType: string
+		lineageTag: b465ec21-cad1-4016-a328-215b6aaeb906
+		summarizeBy: none
+		sourceColumn: menu_path
+
+		annotation SummarizationSetBy = Automatic
+
+	column dtmf_input
+		dataType: string
+		lineageTag: 761231b0-62b5-411c-b6ab-0fdbc2751b6e
+		summarizeBy: none
+		sourceColumn: dtmf_input
+
+		annotation SummarizationSetBy = Automatic
+
+	column entry_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: fa99e3d7-2928-4831-b204-156ce054b686
+		summarizeBy: none
+		sourceColumn: entry_timestamp
+
+		variation Variation
+			isDefault
+			relationship: 6257b2a1-1b44-40f4-b62b-d65a7e543067
+			defaultHierarchy: LocalDateTable_63c5f2f7-fa49-438a-834a-62d7738680d5.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column exit_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3a70b33b-9214-4e47-afc8-0c068c387b22
+		summarizeBy: none
+		sourceColumn: exit_timestamp
+
+		variation Variation
+			isDefault
+			relationship: 22455ee3-5de7-458b-be1d-ef797f96e596
+			defaultHierarchy: LocalDateTable_981b90ea-65a5-4452-b320-1616dc79e942.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column duration_seconds
+		dataType: int64
+		formatString: 0
+		lineageTag: 389987c5-f191-4e88-9c3c-f6fab07f109e
+		summarizeBy: sum
+		sourceColumn: duration_seconds
+
+		annotation SummarizationSetBy = Automatic
+
+	column result
+		dataType: string
+		lineageTag: f9b4f759-bfe2-4c20-8838-08a4ffd8ec89
+		summarizeBy: none
+		sourceColumn: result
+
+		annotation SummarizationSetBy = Automatic
+
+	column intent_at_step
+		dataType: string
+		lineageTag: 2c790dce-cb36-4876-b438-c82f492f4f1f
+		summarizeBy: none
+		sourceColumn: intent_at_step
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ivr_events = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\scott\Downloads\call_center_advanced_csv\ivr_events.csv"),[Delimiter=",", Columns=11, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"ivr_event_id", type text}, {"call_id", type text}, {"step_number", Int64.Type}, {"ivr_label", type text}, {"menu_path", type text}, {"dtmf_input", type text}, {"entry_timestamp", type datetime}, {"exit_timestamp", type datetime}, {"duration_seconds", Int64.Type}, {"result", type text}, {"intent_at_step", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

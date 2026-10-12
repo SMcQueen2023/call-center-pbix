@@ -1,0 +1,44 @@
+table metrics
+	lineageTag: 178c1c11-ea46-4152-842e-86d68ec385ba
+
+	measure average_acw_seconds = AVERAGE(agent_segments[acw_duration_seconds])
+		lineageTag: e1dfcf31-1cfc-423e-948b-664a4a3edd85
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure average_handle_duration_seconds = AVERAGE(agent_segments[handle_duration_seconds])
+		lineageTag: c066f05f-8a88-485e-989b-a09f477f5083
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure average_hold_duration_seconds = AVERAGE(agent_segments[hold_duration_seconds])
+		lineageTag: 961bfb3e-2e87-477f-9409-ff6dd5553db8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure average_talk_duration_seconds = AVERAGE(agent_segments[talk_duration_seconds])
+		lineageTag: 5ad31eb0-827e-4a01-8cd7-62e0d5edab22
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Dummy
+		dataType: string
+		lineageTag: 9c97622e-3762-48db-b144-bb1d64deb78e
+		summarizeBy: none
+		sourceColumn: Dummy
+
+		annotation SummarizationSetBy = Automatic
+
+	partition metrics = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Dummy = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Dummy", type text}})
+				in
+				    #"Changed Type"
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+
